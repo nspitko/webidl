@@ -214,7 +214,7 @@ class Module {
 							if( v.ret.t != TVoid )
 								e = { expr : EReturn(e), pos : p };
 							else if( isConstr )
-								e = macro this = $e;
+								e = macro this = cast $e;
 							return e;
 						}
 
@@ -377,8 +377,8 @@ class Module {
 				pos : p,
 				pack : pack,
 				name : makeName(name),
-				meta : [{ name : ":enum", pos : p }],
-				kind : TDAbstract(macro : Int),
+				//meta : [{ name : ":enum", pos : p }],
+				kind : TDAbstract(macro : Int, [AbEnum]),
 				fields : [for( v in values ) { pos : p, name : v, kind : FVar(null,{ expr : EConst(CInt(""+(index++))), pos : p }) }],
 			});
 		}
